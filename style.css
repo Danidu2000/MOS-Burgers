@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+.backgroundbars {
+    background-image: url(/image/Homepage_background.png);
+}
+
+.Login_btn {
+    background-color: #009432;
+    color: #FF9F1A;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.5s;
+    font-family: "Josefin Sans", sans-serif;
+    text-decoration: none;
+}
+
+.Login_btn:hover {
+    background-color: #006823;
+    color: #FF9F1A;
+    transform: translateY(-5px);
+}
+
+.Logout_btn {
+    background-color: #941B00;
+    color: #FF9F1A;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.5s;
+    font-family: "Josefin Sans", sans-serif;
+    text-decoration: none;
+}
+
+.Logout_btn:hover {
+    background-color: #4d0e00;
+    color: #FF9F1A;
+    transform: translateY(-5px);
+}
+
+.add_btn {
+    background-color: #009432;
+    color: #FFCF8D;
+    border-radius: 10px;
+    padding: 10px 100px 10px 100px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.5s;
+    font-family: "Josefin Sans", sans-serif;
+    text-decoration: none;
+}
+
+.add_btn:hover {
+    background-color: #006823;
+    color: #FFCF8D;
+    transform: translateY(-5px);
+}
+
+.sales_btn {
+    background-color: #009432;
+    color: #FFCF8D;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.5s;
+    font-family: "Josefin Sans", sans-serif;
+    text-decoration: none;
+}
+
+.sales_btn:hover {
+    background-color: #006823;
+    color: #FFCF8D;
+    transform: translateY(-5px);
+}
+
+ul li a{
+    color: white;
+    text-decoration: none;  
+    font-weight: bold;
+    font-size: 24px;
+    padding: left 30px;
+    padding-right: 30px;
+    transition: 0.5s;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+ul li a:hover{
+    color: #8D8881;
+}
+
+.Order_btn {
+    background-color: #941B00;
+    color: #FF9F1A;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.5s;
+    font-family: "Josefin Sans", sans-serif;
+    text-decoration: none;
+}
+.Order_btn:hover {
+    background-color: #530f00;
+    color: #FF9F1A;
+    transform: translateY(-5px); 
+}
+.Social_media li a{
+    color: #0D0802;
+    text-decoration: none;  
+    font-weight: bold;
+    font-size: 32px;
+    padding: left 10px;
+    padding-right: 10px;
+    transition: 0.5s;
+}
+.Social_media li a:hover{
+    color: #BB0000; 
+}
+
+input{
+    border: none;
+    background-color: #FFBC5F;
+    border-radius: 10px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Josefin Sans", sans-serif;
+}
+.col{
+    transition: 0.5s;
+}
+
+.col:hover{
+    transform: translateY(-5px);
+}
+
+.total {
+    border-radius: 10px;
+    background: #FFA931;
+    position: relative;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 41px 24px 35px 11px;
+    width: 1260px;
+    box-sizing: border-box;
+  }
+  .total-lkr-506700 {
+    margin-bottom: 9px;
+    display: inline-block;
+    overflow-wrap: break-word;
+    font-family: 'Josefin Sans';
+    font-weight: 700;
+    font-size: 24px;
+    color: #1A1003;
+    margin-right: 20px;
+  }
+
+  .your-orders-3 {
+    margin: 20px 12px 31px 0;
+    display: inline-block;
+    width: 179px;
+    overflow-wrap: break-word;
+    font-family: 'Josefin Sans';
+    font-weight: 700;
+    font-size: 24px;
+    color: #1A1003;
+  }
+
+  .rectangle-28 {
+    background: #1A1003;
+    margin-bottom: 12px;
+    width: 1920px;
+    height: 5px;
+  }
+

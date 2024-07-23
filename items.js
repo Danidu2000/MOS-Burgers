@@ -229,6 +229,280 @@ function B1022() {
     });
 }
 
+function B1023() {
+    addBurger({
+        id: 'B1023',
+        name: 'Special Horgie Submarine',
+        imgSrc: '/image/Submarine 2/Special Horgie Submarine.png',
+        unitPrice: 2800.00,
+        discount: '-',
+        netPrice: 2800.00
+    });
+}
+
+function B1024() {
+    addBurger({
+        id: 'B1024',
+        name: 'MOS Special Submarine',
+        imgSrc: '/image/Submarine 2/MOS Special Submarine.png',
+        unitPrice: 3000.00,
+        discount: '-',
+        netPrice: 3000.00
+    });
+}
+
+function B1025() {
+    addBurger({
+        id: 'B1025',
+        name: 'Steak Fries (Large)',
+        imgSrc: '/image/Fries/Steak Fries (Large) .png',
+        unitPrice: 1200.00,
+        discount: '-',
+        netPrice: 1200.00
+    });
+}
+
+function B1026() {
+    addBurger({
+        id: 'B1026',
+        name: 'Steak Fries (Medium)',
+        imgSrc: '/image/Fries/Steak Fries (Medium).png',
+        unitPrice: 600.00,
+        discount: '-',
+        netPrice: 600.00
+    });
+}
+
+function B1027() {
+    addBurger({
+        id: 'B1027',
+        name: 'French Fries (Large)',
+        imgSrc: '/image/Fries/French Fries (Large).png',
+        unitPrice: 800.00,
+        discount: '-',
+        netPrice: 800.00
+    });
+}
+
+function B1028() {
+    addBurger({
+        id: 'B1028',
+        name: 'French Fries (Medium)',
+        imgSrc: '/image/Fries/French Fries (Medium).png',
+        unitPrice: 650.00,
+        discount: '-',
+        netPrice: 650.00
+    });
+}
+
+function B1029() {
+    addBurger({
+        id: 'B1029',
+        name: 'French Fries (Small)',
+        imgSrc: '/image/Fries/French Fries (Small).png',
+        unitPrice: 450.00,
+        discount: '-',
+        netPrice: 450.00
+    });
+}
+
+function B1030() {
+    addBurger({
+        id: 'B1030',
+        name: 'Sweet Potato Fries (Large)',
+        imgSrc: '/image/Fries/Sweet Potato Fries (Large).png',
+        unitPrice: 600.00,
+        discount: '-',
+        netPrice: 600.00
+    });
+}
+
+function B1031() {
+    addBurger({
+        id: 'B1031',
+        name: 'Chicken n Cheese Pasta',
+        imgSrc: '/image/Pasta/Chicken n Cheese Pasta.png',
+        unitPrice: 1600.00,
+        discount: '15%',
+        netPrice: 1360.00
+    });
+}
+
+function B1032() {
+    addBurger({
+        id: 'B1032',
+        name: 'Chicken Penne Pasta',
+        imgSrc: '/image/Pasta/Chicken Penne Pasta.png',
+        unitPrice: 1700.00,
+        discount: '15%',
+        netPrice: 1700.00
+    });
+}
+
+function B1033() {
+    addBurger({
+        id: 'B1033',
+        name: 'Ground Turkey Pasta Bake',
+        imgSrc: '/image/Pasta/Ground Turkey Pasta Bake.png',
+        unitPrice: 2900.00,
+        discount: '10%',
+        netPrice: 2610.00
+    });
+}
+
+function B1034() {
+    addBurger({
+        id: 'B1034',
+        name: 'Creamy Shrimp Pasta',
+        imgSrc: '/image/Pasta/Creamy Shrimp Pasta.png',
+        unitPrice: 2000.00,
+        discount: '-',
+        netPrice: 2000.00
+    });
+}
+
+function B1035() {
+    addBurger({
+        id: 'B1035',
+        name: 'Lemon Butter Pasta',
+        imgSrc: '/image/Pasta/Lemon Butter Pasta.png',
+        unitPrice: 1950.00,
+        discount: '-',
+        netPrice: 1950.00
+    });
+}
+
+function B1036() {
+    addBurger({
+        id: 'B1036',
+        name: 'Tagliatelle Pasta',
+        imgSrc: '/image/Pasta/Tagliatelle Pasta.png',
+        unitPrice: 2400.00,
+        discount: '1%',
+        netPrice: 2376.00
+    });
+}
+
+function B1037() {
+    addBurger({
+        id: 'B1037',
+        name: 'Baked Ravioli',
+        imgSrc: '/image/Pasta/Baked Ravioli.png',
+        unitPrice: 2000.00,
+        discount: '1%',
+        netPrice: 1980.00
+    });
+}
+
+function B1038() {
+    addBurger({
+        id: 'B1038',
+        name: 'Fried Chicken (Small)',
+        imgSrc: '/image/Chicken/Fried Chicken (Small).png',
+        unitPrice: 1200.00,
+        discount: '-',
+        netPrice: 1200.00
+    });
+}
+
+function B1039() {
+    addBurger({
+        id: 'B1039',
+        name: 'Fried Chicken (Regular)',
+        imgSrc: '/image/Chicken/Fried Chicken (Regular).png',
+        unitPrice: 2300.00,
+        discount: '10%',
+        netPrice: 2070.00
+    });
+}
+
+function B1040() {
+    addBurger({
+        id: 'B1040',
+        name: 'Fried Chicken (Large)',
+        imgSrc: '/image/Chicken/Fried Chicken (Large).png',
+        unitPrice: 3100.00,
+        discount: '5%',
+        netPrice: 2945.00
+    });
+}
+
+function B1041() {
+    addBurger({
+        id: 'B1041',
+        name: 'Hot Wings (Large)',
+        imgSrc: '/image/Chicken/Hot Wings (Large) .png',
+        unitPrice: 2400.00,
+        discount: '-',
+        netPrice: 2400.00
+    });
+}
+
+function B1042() {
+    addBurger({
+        id: 'B1042',
+        name: 'Devilled Chicken (Large)',
+        imgSrc: '/image/Chicken/Devilled Chicken (Large).png',
+        unitPrice: 900.00,
+        discount: '-',
+        netPrice: 900.00
+    });
+}
+
+function B1043() {
+    addBurger({
+        id: 'B1043',
+        name: 'BBQ Chicken (Regular)',
+        imgSrc: '/image/Chicken/BBQ Chicken (Regular) .png',
+        unitPrice: 2100.00,
+        discount: '-',
+        netPrice: 2100.00
+    });
+}
+
+function B1044() {
+    addBurger({
+        id: 'B1044',
+        name: 'Pepsi (330ml)',
+        imgSrc: '/image/Beverages/Pepsi (330ml).png',
+        unitPrice: 990.00,
+        discount: '5%',
+        netPrice: 940.50
+    });
+}
+
+function B1045() {
+    addBurger({
+        id: 'B1045',
+        name: 'Coca-Cola (330ml)',
+        imgSrc: '/image/Beverages/Coca-Cola (330ml).png',
+        unitPrice: 1230.00,
+        discount: '-',
+        netPrice: 1230.00
+    });
+}
+
+function B1046() {
+    addBurger({
+        id: 'B1046',
+        name: 'Sprite (330ml)',
+        imgSrc: '/image/Beverages/Sprite (330ml).png',
+        unitPrice: 1500.00,
+        discount: '3%',
+        netPrice: 1455.00
+    });
+}
+
+function B1047() {
+    addBurger({
+        id: 'B1047',
+        name: 'Mirinda (330ml)',
+        imgSrc: '/image/Beverages/Mirinda (330ml).png',
+        unitPrice: 850.00,
+        discount: '7%',
+        netPrice: 790.50
+    });
+}
 function addBurger(burgerData) {
     const { id, name, imgSrc, unitPrice, discount, netPrice } = burgerData;
     const newBurgerData = {
@@ -282,7 +556,7 @@ function back(button) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (window.location.pathname.includes('order_page.html')) {
         const tableBody = document.getElementById('tableBody');
 

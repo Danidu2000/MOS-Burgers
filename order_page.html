@@ -33,12 +33,7 @@
       </div>
     </div>
   </header>
-  <div class="container">
-    <div class="row">
-      <input type="text" placeholder="Search..." class="w-50 mx-auto mb-5">
-    </div>
-  </div>
-
+ 
   <div class="table-responsive m-4">
     <section id="orderPage">
       <table class="table" id="orderTable">
@@ -50,8 +45,8 @@
             <th style="background-color: #FFA931;">Unit Price <br> (LKR)</th>
             <th style="background-color: #FFA931;">Discount</th>
             <th style="background-color: #FFA931;">Net Price <br> (LKR)</th>
+            <th style="background-color: #FFA931;">Add</th>
             <th style="background-color: #FFA931;">Remove</th>
-            <th style="background-color: #FFA931;">Back</th>
           </tr>
         </thead>
         <tbody id="tableBody">
@@ -65,12 +60,12 @@
   <div class="d-flex flex-wrap align-items-center justify-content-center">
     <div class="total mx-auto">
       <div class="your-orders-3">
-        Your Orders ()
+        <h4>Your Orders: <span id="count-display">0</span></h4>  
       </div>
       <div class="container-10 d-flex flex-wrap align-items-center justify-content-center">
         <div class="container-4">
           <div class="total-lkr-506700">
-            Total(LKR) : 00.00
+            <h4>Total (LKR): <span id="total-display">0</span>.00</h4>
           </div>
           <span class="order-id-or-001">
             <a href="/payment_page.html" class="Order_btn" style="padding: 15px 40px 15px 40px;">Continue</a>

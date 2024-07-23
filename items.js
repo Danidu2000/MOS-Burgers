@@ -503,6 +503,9 @@ function B1047() {
         netPrice: 790.50
     });
 }
+
+window.count = 0;
+window.total = 0;
 function addBurger(burgerData) {
     const { id, name, imgSrc, unitPrice, discount, netPrice } = burgerData;
     const newBurgerData = {
@@ -523,7 +526,7 @@ function addBurger(burgerData) {
     if (existingItem) {
         // Update the quantity and net price
         existingItem.quantity += newBurgerData.quantity;
-        existingItem.netPrice = existingItem.netPrice * existingItem.quantity;
+        existingItem.netPrice = existingItem.netPrice * existingItem.quantity; 
     } else {
         // Add the new data
         existingBurgerData.push(newBurgerData);
@@ -537,6 +540,8 @@ function addBurger(burgerData) {
 
     // Display success message
     alert('Item added to cart successfully!');
+    
+
 
 }
 
@@ -545,14 +550,33 @@ function removeRow(button) {
     if (row) {
         const itemId = row.querySelector('td').innerText;
         let burgerData = JSON.parse(sessionStorage.getItem('burgerData')) || [];
-        burgerData = burgerData.filter(item => item.id !== itemId);
-        sessionStorage.setItem('burgerData', JSON.stringify(burgerData));
-        row.remove();
+        const item = burgerData.find(item => item.id === itemId);
+
+        if (item) {
+            // Decrement the total by the netPrice of the removed item
+            total -= item.netPrice;
+
+            // Update the total display
+            displayTotal();
+
+            burgerData = burgerData.filter(item => item.id !== itemId);
+            sessionStorage.setItem('burgerData', JSON.stringify(burgerData));
+            row.remove();
+            count--;
+            displayCount();
+        }
     }
 }
 
-function back(button) {
-    window.history.back();
+
+function add(netPrice,button) {
+    count++;
+    displayCount();
+    button.disabled = true;
+    button.innerText = `Added`;
+    total += netPrice;
+    displayTotal();
+    
 }
 
 
@@ -576,23 +600,39 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td style="background-color: #FFBC5F;">${item.discount}</td>
                     <td style="background-color: #FFBC5F;">${item.netPrice}</td>
                     <td style="background-color: #FFBC5F;">
-                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">
-                            <i class="bi bi-trash"></i> Remove
+                        <button type="button" class="btn btn-success" onclick="add(${item.netPrice}, this)">
+                            <i class="bi bi-plus-lg"></i> add
                         </button>
                     </td>
                     <td style="background-color: #FFBC5F;">
-                        <button type="button" class="btn btn-success" onclick="back(this)">
-                            <i class="bi bi-back"></i> Back
+                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">
+                            <i class="bi bi-trash"></i> Remove
                         </button>
                     </td>
                 `;
 
                 tableBody.appendChild(newRow);
             });
+            
         } else {
             console.error('No burger data found in session storage');
         }
     }
+    
 });
 
+function displayCount() {
+    // Get the element by its id
+    let countDisplay = document.getElementById('count-display');
+    
+    // Set the content of the element to the value of count
+    countDisplay.textContent = count;
+}
 
+function displayTotal() {
+    // Get the element by its id
+    let totalDisplay = document.getElementById('total-display');
+    
+    // Set the content of the element to the value of total
+    totalDisplay.textContent = total;
+}

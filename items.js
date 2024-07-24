@@ -506,6 +506,7 @@ function B1047() {
 
 window.count = 0;
 window.total = 0;
+
 function addBurger(burgerData) {
     const { id, name, imgSrc, unitPrice, discount, netPrice } = burgerData;
     const newBurgerData = {
@@ -540,9 +541,6 @@ function addBurger(burgerData) {
 
     // Display success message
     alert('Item added to cart successfully!');
-    
-
-
 }
 
 function removeRow(button) {
@@ -568,17 +566,14 @@ function removeRow(button) {
     }
 }
 
-
-function add(netPrice,button) {
+function add(netPrice, button) {
     count++;
     displayCount();
     button.disabled = true;
     button.innerText = `Added`;
     total += netPrice;
     displayTotal();
-    
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     if (window.location.pathname.includes('order_page.html')) {
@@ -613,12 +608,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 tableBody.appendChild(newRow);
             });
-            
         } else {
             console.error('No burger data found in session storage');
         }
     }
-    
 });
 
 function displayCount() {
@@ -636,3 +629,145 @@ function displayTotal() {
     // Set the content of the element to the value of total
     totalDisplay.textContent = total;
 }
+
+// Function to get burger data and return as a new object array
+function getBurgerDataAsArray() {
+    // Retrieve existing burger data from session storage
+    const existingBurgerData = JSON.parse(sessionStorage.getItem('burgerData')) || [];
+    
+    // Create a new object array (shallow copy in this case)
+    const newBurgerDataArray = existingBurgerData.map(item => ({
+        id: item.id,
+        name: item.name,
+        imgSrc: item.imgSrc,
+        quantity: item.quantity,
+        unitPrice: item.unitPrice,
+        discount: item.discount,
+        netPrice: item.netPrice
+    }));
+
+    return newBurgerDataArray;
+}
+
+// Function to generate PDF
+function generatePDF() {
+    var pdfObject = jsPDFInvoiceTemplate.default(props); //returns number of pages created
+    console.log("Object created: ", pdfObject);
+}
+    
+var props = {
+    outputType: jsPDFInvoiceTemplate.OutputType.Save,
+    returnJsPDFDocObject: true,
+    fileName: "Invoice 2021",
+    orientationLandscape: false,
+    compress: true,
+    logo: {
+        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
+        type: 'PNG', //optional, when src= data:uri (nodejs case)
+        width: 53.33, //aspect ratio = width/height
+        height: 26.66,
+        margin: {
+            top: 0, //negative or positive num, from the current position
+            left: 0 //negative or positive num, from the current position
+        }
+    },
+    stamp: {
+        inAllPages: true, //by default = false, just in the last page
+        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
+        type: 'JPG', //optional, when src= data:uri (nodejs case)
+        width: 20, //aspect ratio = width/height
+        height: 20,
+        margin: {
+            top: 0, //negative or positive num, from the current position
+            left: 0 //negative or positive num, from the current position
+        }
+    },
+    business: {
+        name: "Business Name",
+        address: "Albania, Tirane ish-Dogana, Durres 2001",
+        phone: "(+355) 069 11 11 111",
+        email: "email@example.com",
+        email_1: "info@example.al",
+        website: "www.example.al",
+    },
+    contact: {
+        label: "Invoice issued for:",
+        name: "Client Name",
+        address: "Albania, Tirane, Astir",
+        phone: "(+355) 069 22 22 222",
+        email: "client@website.al",
+        otherInfo: "www.website.al",
+    },
+    invoice: {
+        label: "Invoice #: ",
+        num: 19,
+        invDate: "Payment Date: 01/01/2021 18:12",
+        invGenDate: "Invoice Date: 02/02/2021 10:17",
+        headerBorder: false,
+        tableBodyBorder: false,
+        header: [
+          {
+            title: "#", 
+            style: { 
+              width: 10 
+            } 
+          }, 
+          { 
+            title: "Title",
+            style: {
+              width: 30
+            } 
+          }, 
+          { 
+            title: "Description",
+            style: {
+              width: 80
+            } 
+          }, 
+          { title: "Price"},
+          { title: "Quantity"},
+          { title: "Unit"},
+          { title: "Total"}
+        ],
+        table: Array.from(Array(10), (item, index)=>([
+            index + 1,
+            "There are many variations ",
+            "Lorem Ipsum is simply dummy text dummy text ",
+            200.5,
+            4.5,
+            "m2",
+            400.5
+        ])),
+        additionalRows: [{
+            col1: 'Total:',
+            col2: '145,250.50',
+            col3: 'ALL',
+            style: {
+                fontSize: 14 //optional, default 12
+            }
+        },
+        {
+            col1: 'VAT:',
+            col2: '20',
+            col3: '%',
+            style: {
+                fontSize: 10 //optional, default 12
+            }
+        },
+        {
+            col1: 'SubTotal:',
+            col2: '116,199.90',
+            col3: 'ALL',
+            style: {
+                fontSize: 10 //optional, default 12
+            }
+        }],
+        invDescLabel: "Invoice Note",
+        invDesc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
+    },
+    footer: {
+        text: "The invoice is created on a computer and is valid without the signature and stamp.",
+    },
+    pageEnable: true,
+    pageLabel: "Page ",
+};

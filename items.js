@@ -506,6 +506,7 @@ function B1047() {
 
 window.count = 0;
 window.total = 0;
+window.tableBody = '';
 
 function addBurger(burgerData) {
     const { id, name, imgSrc, unitPrice, discount, netPrice } = burgerData;
@@ -577,7 +578,7 @@ function add(netPrice, button) {
 
 document.addEventListener('DOMContentLoaded', function () {
     if (window.location.pathname.includes('order_page.html')) {
-        const tableBody = document.getElementById('tableBody');
+         tableBody = document.getElementById('tableBody');
 
         const burgerData = JSON.parse(sessionStorage.getItem('burgerData'));
 
@@ -614,7 +615,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (window.location.pathname.includes('invoice.html')) {
-        const tableBody = document.getElementById('tableBody');
+         tableBody = document.getElementById('tableBody');
 
         const burgerData = JSON.parse(sessionStorage.getItem('burgerData'));
 
@@ -656,6 +657,34 @@ function displayTotal() {
 
 
 function generatePDF() {
-   const pdf = document.getElementById('invoicePage');
-   html2pdf().from(pdf).save();
+    const pdf = document.getElementById('invoicePage');
+    setTimeout(() => {
+         html2pdf().from(pdf).save();
+    }, 4000); // Adjust the delay as needed
+   
+}
+
+function saveTotal() {
+    const totalValue = total;
+    localStorage.setItem('totalValue', totalValue);
+    window.location.href = 'invoice.html';
+}
+
+function saveValues() {
+    const fname = document.getElementById('first_name').value;
+    const lname = document.getElementById('last_name').value;
+    const phnumber = document.getElementById('phone_number').value;
+    const order_id = increametOrderID();
+    localStorage.setItem('fname', fname);
+    localStorage.setItem('lname', lname);
+    localStorage.setItem('phnumber', phnumber);
+    localStorage.setItem('order_id', order_id);
+    window.location.href = 'invoice.html';
+    console.log(fname, lname, phnumber);
+}
+
+function increametOrderID() {
+    let orderId = document.getElementById('order-id');
+    orderId++;
+    return orderId;
 }

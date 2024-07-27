@@ -1,110 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <title>Local Date and Time</title>
-    <style>
-        #datetime {
-            font-size: 1rem;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Local Date and Time</title>
+  <style>
+    #datetime {
+      font-size: 1rem;
+      margin-top: 20px;
+    }
+  </style>
 </head>
-<body>
-<div id="invoicePage">
-  <div class="container d-flex justify-content-center">
-    <img src="/image/Logo dark.png" alt="" style="width: 100px;">
-  </div>
-  <div class="container d-flex justify-content-center">
-    <h2>MOS BURGERS</h2>
-  </div>
-  <div class="container d-flex justify-content-center">
-    <h6>No. 45, Galle Road,
-      Colombo 03,
-      Sri Lanka.</h6>
-  </div>
-  <div class="container d-flex justify-content-center">
-    <h6>+94 77 123 4567,
-      +94 77 765 4321</h6>
-  </div>
-  <div class="container d-flex justify-content-center">
-    <h6>email@MOSBurgers.lk</h6>
-  </div>
-  <hr class="container d-flex justify-content-center">
-<div class="container d-flex justify-content-center mt-5 mb-5">
-  <div class="container justify-content-start">
-    <h5>
-      ORDER ID:
-      <span id="order-id">001</span>
-    </h5>
-    <h6>Invoice issued for:</h6>
-    <h5>Client Name</h5>
-    <h6>0723301474</h6>
-  </div>
-  <p id="datetime"></p>
-  <div>
-    
-  </div>
-</div>
-  
- 
- 
-    <div class="table-responsive m-4">
-        <section>
-          <table class="table" id="orderTable">
-            <thead>
-              <tr>
-                <th >Item</th>
-                <th >Item Name</th>
-                <th >Quantity</th>
-                <th >Unit Price <br> (LKR)</th>
-                <th >Discount</th>
-                <th >Net Price <br> (LKR)</th>
-              </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-          </table>
-        </section>
-    
+<header class="p-3 mb-3 " style="background-color: #E68F17;">
+  <div class="container" id="invoice">
+    <div class="d-flex flex-wrap align-items-center justify-content-center">
+      <a href="/" class="d-flex align-items- mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+        <img src="/image/Logo dark.png" alt="..." width="116px" style="margin-right: 200px;">
+      </a>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/index.html" onclick="clearBurgerdata()">Home</a></li>
+        <li><a href="/menu_page.html" onclick="clearBurgerdata()">Menu</a></li>
+        <li><a href="/order_page.html" style="color: #1A1003;" onclick="clearBurgerdata()">Order</a></li>
+        <li><a href="#" style="margin-right: 172px;" onclick="clearBurgerdata()">Contact</a></li>
+      </ul>
+
+      <div class="col-md-1 mb-2 mb-md-0">
+        <a href="/login_page.html" onclick="clearBurgerdata()" class="Login_btn">Login</a>
       </div>
 
-      <h6 class="text-center">The invoice is created on a computer and is valid without the signature and stamp.</h6>
-</div>
+    </div>
+  </div>
+</header>
 
-      <button onclick="generatePDF()">Download</button>
-      <a href="menu_page.html"><input type="button" value="Back"></a>
-      <script>
-        function updateDateTime() {
-            const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric', 
-                hour: 'numeric', 
-                minute: 'numeric', 
-                second: 'numeric' 
-            };
-            const formattedDateTime = now.toLocaleDateString('en-US', options);
-            document.getElementById('datetime').textContent = formattedDateTime;
-        }
+<body style="background-color: #FFCF8D;">
+  <div id="invoicePage" style="background-color: white;" class="mt-5">
+    <div class="container d-flex justify-content-center">
+      <img src="/image/Logo dark.png" alt="" style="width: 100px;">
+    </div>
+    <div class="container d-flex justify-content-center">
+      <h2>MOS BURGERS</h2>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <h6>No. 45, Galle Road,
+        Colombo 03,
+        Sri Lanka.</h6>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <h6>+94 77 123 4567,
+        +94 77 765 4321</h6>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <h6>email@MOSBurgers.lk</h6>
+    </div>
+    <hr class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center mt-5 mb-5">
+      <div class="container justify-content-start">
+        <h5>
+          ORDER ID: OR
+          <span id="order-id">0</span>
+        </h5>
+        <h6>Invoice issued for:</h6>
+        <h5><span id="client-name"></span></h5>
+        <h6><span id="client-phone"></span></h6>
+      </div>
+      <p id="datetime"></p>
+      <div>
 
-        // Update the date and time immediately when the page loads
-        updateDateTime();
+      </div>
+    </div>
 
-        // Update the date and time every second
-        setInterval(updateDateTime, 1000);
-    </script>
-      <script src="items.js"></script>
+
+
+    <div class="table-responsive m-4">
+      <section>
+        <table class="table" id="orderTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Unit Price <br> (LKR)</th>
+              <th>Discount</th>
+              <th>Net Price <br> (LKR)</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+          </tbody>
+        </table>
+      </section>
+
+      <div class="container d-flex justify-content-end">
+        <h5>Total (LKR): <span id="total-invoice">0</span>.00</h5>
+      </div>
+
+    </div>
+
+    <h6 class="text-center">The invoice is created on a computer and is valid without the signature and stamp.</h6>
+  </div>
+
+  <div class="container d-flex justify-content-center">
+    <a href="menu_page.html" onclick="clearBurgerdata()" class="btn btn-success" style="margin-right: 10px;"><i class="bi bi-menu-button-wide"></i>
+      Menu</a>
+    <button onclick="generatePDF()" class="btn btn-success" style="margin-right: 10px;"><i class="bi bi-download"></i>
+      Download Invoice</button>
+    <a href="index.html" onclick="clearBurgerdata()" class="btn btn-success"><i class="bi bi-house-door"></i> Home</a>
+  </div>
+
+  <header class="p-3" style="background-color: #CC7F15;margin-top: 10px;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center">
+        <a href="/" class="d-flex align-items- mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <img src="/image/Logo dark.png" alt="..." width="150px">
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/menu_page.html">Menu</a></li>
+          <li><a href="/order_page.html" style="color: #1A1003;">Order</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+
+        <ul class="Social_media nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+          <li><a href="#"><i class="bi bi-tiktok"></i></a></li>
+          <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+        </ul>
+        <div class="container d-flex justify-content-center text-white-50"
+          style="font-family: 'Josefin Sans', sans-serif;">
+          <h6>
+            MOS Burgers - All Right Reserved - 2024
+          </h6>
+        </div>
+      </div>
+    </div>
+  </header>
+  <script src="items.js"></script>
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      };
+      const formattedDateTime = now.toLocaleDateString('en-US', options);
+      document.getElementById('datetime').textContent = formattedDateTime;
+    }
+
+    // Update the date and time immediately when the page loads
+    updateDateTime();
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const totalValue = localStorage.getItem('totalValue');
+      document.getElementById('total-invoice').textContent = totalValue;
+      const client_fname = localStorage.getItem('fname');
+      const client_lname = localStorage.getItem('lname');
+      console.log(client_fname, client_lname);
+      document.getElementById('client-name').textContent = client_fname + ' ' + client_lname;
+      const client_phone = localStorage.getItem('phnumber');
+      document.getElementById('client-phone').textContent = client_phone;
+      const order_id = localStorage.getItem('order_id');
+      document.getElementById('order-id').textContent = order_id;
+    });
+  </script>
+  <script>
+    function clearBurgerdata() {
+    sessionStorage.setItem('burgerData', JSON.stringify([]));
+    console.log('Burger data cleared');
+}
+  </script>
 </body>
+
 </html>

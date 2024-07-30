@@ -33,29 +33,37 @@
           </div>
         </div>
       </header>
+    </div>
+    <div class="container">
+    <button id="addCustomerBtn" class="btn btn-primary">Add Customer</button>
+    <button id="searchCustomerBtn" class="btn btn-secondary">Search Customer</button>
 
-    <div class="d-flex justify-content-center">
-        <a href="#" class="add_btn">Add New customer</a>
+    <div class="mb-3">
+      <label class="form-label" style="color: #004A19;">Last name</label>
+      <input type="text" class="form-control bg-success-subtle" id="customerName" placeholder="Last name">
     </div>
 
-    <span class="placeholder col-12 placeholder-lg"></span>
-      <span class="placeholder col-12"></span>
-      <span class="placeholder col-12 placeholder-sm"></span>
-      <span class="placeholder col-12 placeholder-xs mb-5"></span>
-
-      <span class="placeholder col-12 placeholder-lg"></span>
-      <span class="placeholder col-12"></span>
-      <span class="placeholder col-12 placeholder-sm"></span>
-      <span class="placeholder col-12 placeholder-xs mb-5"></span>
-
-      <span class="placeholder col-12 placeholder-lg"></span>
-      <span class="placeholder col-12"></span>
-      <span class="placeholder col-12 placeholder-sm"></span>
-      <span class="placeholder col-12 placeholder-xs mb-5"></span>
-
-    <div class="d-flex justify-content-center" style="margin-bottom: 150px;">
-        <a href="#" class="add_btn">Search Customer</a>
+    <div class="mb-3">
+      <label class="form-label" style="color: #004A19;"><i class="bi bi-phone"></i>Phone number</label>
+      <input type="text" class="form-control bg-success-subtle" id="customerPhone" placeholder="Phone number">
+      <div class="form-text" style="color: #004A19;">We'll never share your phone number with anyone else.</div>
     </div>
+  </div>
+
+
+    <h3 class="mt-5">Customer List</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+        <tbody id="customerListBody">
+        </tbody>
+    </table>
+</div>
 
     <header class="p-3" style="background-color: #CC7F15;margin-top: 10px;">
         <div class="container">
@@ -85,5 +93,91 @@
         </div>
       </header>
     
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const customerList = JSON.parse(localStorage.getItem('customerList')) || [];
+
+            function displayCustomerList(customers) {
+                const tableBody = document.getElementById('customerListBody');
+                tableBody.innerHTML = '';
+
+                customers.forEach(customer => {
+                    if (customer && customer.customerName && customer.customerPhone) {
+                        const row = document.createElement('tr');
+
+                        const customerIdCell = document.createElement('td');
+                        customerIdCell.textContent = customer.customerId;
+                        row.appendChild(customerIdCell);
+
+                        const customerNameCell = document.createElement('td');
+                        customerNameCell.textContent = customer.customerName;
+                        row.appendChild(customerNameCell);
+
+                        const customerPhoneCell = document.createElement('td');
+                        customerPhoneCell.textContent = customer.customerPhone;
+                        row.appendChild(customerPhoneCell);
+
+                        tableBody.appendChild(row);
+                    }
+                });
+            }
+
+            function generateCustomerId() {
+                return 'C' + Math.floor(Math.random() * 1000000);
+            }
+
+            function isDuplicateCustomer(name, phone) {
+                return customerList.some(customer => 
+                    customer && 
+                    customer.customerName && 
+                    customer.customerPhone && 
+                    customer.customerName.toLowerCase() === name.toLowerCase() && 
+                    customer.customerPhone === phone
+                );
+            }
+
+            document.getElementById('addCustomerBtn').addEventListener('click', function () {
+                const customerName = document.getElementById('customerName').value;
+                const customerPhone = document.getElementById('customerPhone').value;
+
+                if (customerName && customerPhone) {
+                    if (isDuplicateCustomer(customerName, customerPhone)) {
+                        alert('Customer with this name and phone number already exists');
+                    } else {
+                        const newCustomer = {
+                            customerId: generateCustomerId(),
+                            customerName: customerName,
+                            customerPhone: customerPhone
+                        };
+
+                        customerList.push(newCustomer);
+                        localStorage.setItem('customerList', JSON.stringify(customerList));
+                        displayCustomerList(customerList);
+
+                        document.getElementById('customerName').value = '';
+                        document.getElementById('customerPhone').value = '';
+                    }
+                } else {
+                    alert('Please fill out all fields');
+                }
+            });
+
+            document.getElementById('searchCustomerBtn').addEventListener('click', function () {
+                const searchName = prompt('Enter customer name to search:');
+                if (searchName) {
+                    const filteredCustomers = customerList.filter(customer =>
+                        customer &&
+                        customer.customerName &&
+                        customer.customerName.toLowerCase().includes(searchName.toLowerCase())
+                    );
+                    displayCustomerList(filteredCustomers);
+                }
+            });
+
+            // Initial display of customer list
+            displayCustomerList(customerList);
+        });
+    </script>
+
 </body>
 </html>

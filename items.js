@@ -674,17 +674,10 @@ function saveValues() {
     const fname = document.getElementById('first_name').value;
     const lname = document.getElementById('last_name').value;
     const phnumber = document.getElementById('phone_number').value;
-    const order_id = increametOrderID();
     localStorage.setItem('fname', fname);
     localStorage.setItem('lname', lname);
     localStorage.setItem('phnumber', phnumber);
-    localStorage.setItem('order_id', order_id);
     window.location.href = 'invoice.html';
     console.log(fname, lname, phnumber);
 }
 
-function increametOrderID() {
-    let orderId = document.getElementById('order-id');
-    orderId++;
-    return orderId;
-}

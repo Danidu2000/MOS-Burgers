@@ -19,6 +19,7 @@
       margin-top: 20px;
     }
   </style>
+  <title>Persistent Variable Example</title>
 </head>
 <header class="p-3 mb-3 " style="background-color: #E68F17;">
   <div class="container" id="invoice">
@@ -66,8 +67,8 @@
     <div class="container d-flex justify-content-center mt-5 mb-5">
       <div class="container justify-content-start">
         <h5>
-          ORDER ID: OR
-          <span id="order-id">0</span>
+          ORDER ID:
+          <span id="counterDisplay">0</span>
         </h5>
         <h6>Invoice issued for:</h6>
         <h5><span id="client-name"></span></h5>
@@ -159,15 +160,15 @@
       };
       const formattedDateTime = now.toLocaleDateString('en-US', options);
       document.getElementById('datetime').textContent = formattedDateTime;
+      return formattedDateTime;
     }
 
     // Update the date and time immediately when the page loads
-    updateDateTime();
+    const currentDateTime = updateDateTime();
 
     // Update the date and time every second
     setInterval(updateDateTime, 1000);
-  </script>
-  <script>
+
     document.addEventListener('DOMContentLoaded', () => {
       const totalValue = localStorage.getItem('totalValue');
       document.getElementById('total-invoice').textContent = totalValue;
@@ -177,15 +178,42 @@
       document.getElementById('client-name').textContent = client_fname + ' ' + client_lname;
       const client_phone = localStorage.getItem('phnumber');
       document.getElementById('client-phone').textContent = client_phone;
-      const order_id = localStorage.getItem('order_id');
-      document.getElementById('order-id').textContent = order_id;
     });
-  </script>
-  <script>
+
     function clearBurgerdata() {
-    sessionStorage.setItem('burgerData', JSON.stringify([]));
-    console.log('Burger data cleared');
-}
+      sessionStorage.setItem('burgerData', JSON.stringify([]));
+      console.log('Burger data cleared');
+    }
+
+    function getCounter() {
+      return parseInt(localStorage.getItem('counter')) || 0;
+    }
+
+    function setCounter(value) {
+      localStorage.setItem('counter', value);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      let counter = getCounter();
+      counter++;
+      document.getElementById('counterDisplay').innerText = `OR${counter}`;
+      setCounter(counter);
+
+      // Save order details to localStorage
+      const orderDetails = {
+        orderId: `OR${counter}`,
+        clientName: document.getElementById('client-name').textContent,
+        clientPhone: document.getElementById('client-phone').textContent,
+        dateTime: currentDateTime,
+        total: document.getElementById('total-invoice').textContent
+      };
+
+      let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+      orderHistory.push(orderDetails);
+      localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+
+      
+    });
   </script>
 </body>
 

@@ -35,13 +35,26 @@
       </header>
 
     <div class="d-flex justify-content-center mb-5">
-        <a href="#" class="sales_btn m-auto">Monthly sales</a>
-        <a href="#" class="sales_btn m-auto">Annual sales</a>
-        <a href="#" class="sales_btn m-auto">Top customer</a>
+      <button id="monthlySalesBtn" class="sales_btn m-auto">Monthly sales</button>
+      <button id="annualSalesBtn" class="sales_btn m-auto">Annual sales</button>
+      <button id="topCustomerBtn" class="sales_btn m-auto">Top customer</button>
     </div>
 
-    <div class="container mb-5" style="background-color: #FFBC5F;">
-        <canvas id="myChart" width="400" height="500"></canvas>
+    <div class="container mt-5">
+      <h2>Order History</h2>
+      <table class="table" id="orderHistoryTable">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Phone Number</th>
+            <th>Date and Time</th>
+            <th>Total (LKR)</th>
+          </tr>
+        </thead>
+        <tbody id="orderHistoryBody">
+        </tbody>
+      </table>
     </div>
     
 
@@ -72,6 +85,89 @@
           </div>
         </div>
       </header>
+      <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+
+      function displayOrderHistory(orderArray) {
+        const tableBody = document.getElementById('orderHistoryBody');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        orderArray.forEach(order => {
+          const row = document.createElement('tr');
+
+          const orderIdCell = document.createElement('td');
+          orderIdCell.textContent = order.orderId;
+          row.appendChild(orderIdCell);
+
+          const clientNameCell = document.createElement('td');
+          clientNameCell.textContent = order.clientName;
+          row.appendChild(clientNameCell);
+
+          const clientPhoneCell = document.createElement('td');
+          clientPhoneCell.textContent = order.clientPhone;
+          row.appendChild(clientPhoneCell);
+
+          const dateTimeCell = document.createElement('td');
+          dateTimeCell.textContent = order.dateTime;
+          row.appendChild(dateTimeCell);
+
+          const totalCell = document.createElement('td');
+          totalCell.textContent = order.total;
+          row.appendChild(totalCell);
+
+          tableBody.appendChild(row);
+        });
+      }
+
+      // Initial display of order history
+      displayOrderHistory(orderHistory);
+
+      // Sort the order history array by total amount in descending order
+      function getTopCustomer(orderArray) {
+        return orderArray.sort((a, b) => parseFloat(b.total) - parseFloat(a.total))[0];
+      }
+
+      document.getElementById('topCustomerBtn').addEventListener('click', function() {
+        const topCustomer = getTopCustomer(orderHistory);
+        displayOrderHistory([topCustomer]); // Display only the top customer
+      });
+
+      // Filter orders by the current month
+      function getMonthlySales(orderArray) {
+        const now = new Date();
+        const currentMonth = now.getMonth();
+        const currentYear = now.getFullYear();
+        return orderArray.filter(order => {
+          const orderDate = new Date(order.dateTime);
+          return orderDate.getMonth() === currentMonth && orderDate.getFullYear() === currentYear;
+        });
+      }
+
+      // Filter orders by the current year
+      function getAnnualSales(orderArray) {
+        const currentYear = new Date().getFullYear();
+        return orderArray.filter(order => {
+          const orderDate = new Date(order.dateTime);
+          return orderDate.getFullYear() === currentYear;
+        });
+      }
+
+      document.getElementById('monthlySalesBtn').addEventListener('click', function() {
+        const monthlySales = getMonthlySales(orderHistory);
+        console.log("Monthly Sales:", monthlySales); // Debugging line
+        displayOrderHistory(monthlySales); // Display monthly sales
+      });
+
+      document.getElementById('annualSalesBtn').addEventListener('click', function() {
+        const annualSales = getAnnualSales(orderHistory);
+        console.log("Annual Sales:", annualSales); // Debugging line
+        displayOrderHistory(annualSales); // Display annual sales
+      });
+    });
+  </script>
+    </body>
     
+    </html>
 </body>
 </html>

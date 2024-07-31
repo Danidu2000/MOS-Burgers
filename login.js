@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector('form');
     const signInButton = document.querySelector('a.btn');
 
-    signInButton.addEventListener('click', function(event) {
+    signInButton.addEventListener('click', function (event) {
         event.preventDefault();
-        
+
         const userNameInput = document.getElementById('floatingInput');
         const passwordInput = document.getElementById('floatingPassword');
         const rememberMe = document.getElementById('flexCheckDefault').checked;
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('userName');
         }
 
-        if (userName === 'admin' && password === 'password') { 
+        if (userName === 'admin' && password === 'password') {
             window.location.href = './customer.html';
         } else {
             alert('Invalid user name or password');

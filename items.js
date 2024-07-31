@@ -520,27 +520,18 @@ function addBurger(burgerData) {
         netPrice,
     };
 
-    // Retrieve existing burger data from session storage
     const existingBurgerData = JSON.parse(sessionStorage.getItem('burgerData')) || [];
 
-    // Check if burger data already exists
     const existingItem = existingBurgerData.find(item => item.id === newBurgerData.id);
     if (existingItem) {
-        // Update the quantity and net price
         existingItem.quantity += newBurgerData.quantity;
-        existingItem.netPrice = existingItem.netPrice * existingItem.quantity; 
+        existingItem.netPrice = existingItem.netPrice * existingItem.quantity;
     } else {
-        // Add the new data
         existingBurgerData.push(newBurgerData);
     }
 
-    // Store the updated data in session storage
     sessionStorage.setItem('burgerData', JSON.stringify(existingBurgerData));
 
-    // Redirect to the order page
-    //window.location.href = 'order_page.html';
-
-    // Display success message
     alert('Item added to cart successfully!');
 }
 
@@ -552,10 +543,8 @@ function removeRow(button) {
         const item = burgerData.find(item => item.id === itemId);
 
         if (item) {
-            // Decrement the total by the netPrice of the removed item
             total -= item.netPrice;
 
-            // Update the total display
             displayTotal();
 
             burgerData = burgerData.filter(item => item.id !== itemId);
@@ -578,7 +567,7 @@ function add(netPrice, button) {
 
 document.addEventListener('DOMContentLoaded', function () {
     if (window.location.pathname.includes('order_page.html')) {
-         tableBody = document.getElementById('tableBody');
+        tableBody = document.getElementById('tableBody');
 
         const burgerData = JSON.parse(sessionStorage.getItem('burgerData'));
 
@@ -615,7 +604,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (window.location.pathname.includes('invoice.html')) {
-         tableBody = document.getElementById('tableBody');
+        tableBody = document.getElementById('tableBody');
 
         const burgerData = JSON.parse(sessionStorage.getItem('burgerData'));
 
@@ -640,18 +629,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function displayCount() {
-    // Get the element by its id
     let countDisplay = document.getElementById('count-display');
-    
-    // Set the content of the element to the value of count
+
     countDisplay.textContent = count;
 }
 
 function displayTotal() {
-    // Get the element by its id
     let totalDisplay = document.getElementById('total-display');
-    
-    // Set the content of the element to the value of total
+
     totalDisplay.textContent = total;
 }
 
@@ -659,9 +644,9 @@ function displayTotal() {
 function generatePDF() {
     const pdf = document.getElementById('invoicePage');
     setTimeout(() => {
-         html2pdf().from(pdf).save();
-    }, 4000); // Adjust the delay as needed
-   
+        html2pdf().from(pdf).save();
+    }, 4000);
+
 }
 
 function saveTotal() {

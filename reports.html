@@ -1,97 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body style="background-color: #FFCF8D;">
-    <header class="p-3 mb-3 " style="background-color: #E68F17;">
-        <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center">
-            <a href="/" class="d-flex align-items- mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-              <img src="./image/Logo dark.png" alt="..." width="116px" style="margin-right: 200px;">
-            </a>
-    
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="./index.html">Home</a></li>
-              <li><a href="./menu_page.html">Menu</a></li>
-              <li><a href="./order_page.html">Order</a></li>
-              <li><a href="./customer.html">Cuctomer</a></li>
-              <li><a href="./reports.html" style="color: #1A1003;">Reports</a></li>
-              <li><a href="#" style="margin-right: 172px;">Contact</a></li>
-            </ul>
-    
-            <div class="col-md-1 mb-2 mb-md-0">
-                <a href="./index.html" class="Logout_btn">Logout</a>
-            </div>
+  <header class="p-3 mb-3 " style="background-color: #E68F17;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center">
+        <a href="/" class="d-flex align-items- mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <img src="./image/Logo dark.png" alt="..." width="116px" style="margin-right: 200px;">
+        </a>
 
-          </div>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./menu_page.html">Menu</a></li>
+          <li><a href="./order_page.html">Order</a></li>
+          <li><a href="./customer.html">Cuctomer</a></li>
+          <li><a href="./reports.html" style="color: #1A1003;">Reports</a></li>
+          <li><a href="./contact_page.html" style="margin-right: 172px;">Contact</a></li>
+        </ul>
+
+        <div class="col-md-1 mb-2 mb-md-0">
+          <a href="./index.html" class="Logout_btn">Logout</a>
         </div>
-      </header>
 
-    <div class="d-flex justify-content-center mb-5">
-      <button id="monthlySalesBtn" class="sales_btn m-auto">Monthly sales</button>
-      <button id="annualSalesBtn" class="sales_btn m-auto">Annual sales</button>
-      <button id="topCustomerBtn" class="sales_btn m-auto">Top customer</button>
+      </div>
     </div>
+  </header>
 
-    <div class="container mt-5">
-      <h2>Order History</h2>
-      <table class="table" id="orderHistoryTable">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Customer Name</th>
-            <th>Phone Number</th>
-            <th>Date and Time</th>
-            <th>Total (LKR)</th>
-          </tr>
-        </thead>
-        <tbody id="orderHistoryBody">
-        </tbody>
-      </table>
-    </div>
-    
+  <div class="d-flex justify-content-center mb-5">
+    <button id="monthlySalesBtn" class="sales_btn m-auto">Monthly sales</button>
+    <button id="annualSalesBtn" class="sales_btn m-auto">Annual sales</button>
+    <button id="topCustomerBtn" class="sales_btn m-auto">Top customer</button>
+  </div>
 
-    <header class="p-3" style="background-color: #CC7F15;margin-top: 10px;">
-        <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center">
-            <a href="/" class="d-flex align-items- mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-              <img src="./image/Logo dark.png" alt="..." width="150px">
-            </a>
-    
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="./index.html">Home</a></li>
-              <li><a href="./menu_page.html">Menu</a></li>
-              <li><a href="./order_page.html">Order</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-    
-            <ul class="Social_media nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a></li>
-              <li><a href="https://www.tiktok.com/en/"><i class="bi bi-tiktok"></i></a></li>
-              <li><a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a></li>
-            </ul>
-            <div class="container d-flex justify-content-center text-white-50"style="font-family: 'Josefin Sans', sans-serif;">
-              <h6>
-                MOS Burgers - All Right Reserved - 2024 
-              </h6>
-            </div>
-          </div>
+  <div class="container mt-5">
+    <h2>Order History</h2>
+    <table class="table" id="orderHistoryTable">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer Name</th>
+          <th>Phone Number</th>
+          <th>Date and Time</th>
+          <th>Total (LKR)</th>
+        </tr>
+      </thead>
+      <tbody id="orderHistoryBody">
+      </tbody>
+    </table>
+  </div>
+
+
+  <header class="p-3" style="background-color: #CC7F15;margin-top: 10px;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center">
+        <a href="/" class="d-flex align-items- mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <img src="./image/Logo dark.png" alt="..." width="150px">
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./menu_page.html">Menu</a></li>
+          <li><a href="./order_page.html">Order</a></li>
+          <li><a href="./contact_page.html">Contact</a></li>
+        </ul>
+
+        <ul class="Social_media nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a></li>
+          <li><a href="https://www.tiktok.com/en/"><i class="bi bi-tiktok"></i></a></li>
+          <li><a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a></li>
+        </ul>
+        <div class="container d-flex justify-content-center text-white-50"
+          style="font-family: 'Josefin Sans', sans-serif;">
+          <h6>
+            MOS Burgers - All Right Reserved - 2024
+          </h6>
         </div>
-      </header>
-      <script>
-    document.addEventListener('DOMContentLoaded', function() {
+      </div>
+    </div>
+  </header>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
       const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
 
       function displayOrderHistory(orderArray) {
         const tableBody = document.getElementById('orderHistoryBody');
-        tableBody.innerHTML = ''; // Clear existing rows
+        tableBody.innerHTML = '';
 
         orderArray.forEach(order => {
           const row = document.createElement('tr');
@@ -120,20 +123,17 @@
         });
       }
 
-      // Initial display of order history
       displayOrderHistory(orderHistory);
 
-      // Sort the order history array by total amount in descending order
       function getTopCustomer(orderArray) {
         return orderArray.sort((a, b) => parseFloat(b.total) - parseFloat(a.total))[0];
       }
 
-      document.getElementById('topCustomerBtn').addEventListener('click', function() {
+      document.getElementById('topCustomerBtn').addEventListener('click', function () {
         const topCustomer = getTopCustomer(orderHistory);
-        displayOrderHistory([topCustomer]); // Display only the top customer
+        displayOrderHistory([topCustomer]);
       });
 
-      // Filter orders by the current month
       function getMonthlySales(orderArray) {
         const now = new Date();
         const currentMonth = now.getMonth();
@@ -144,7 +144,6 @@
         });
       }
 
-      // Filter orders by the current year
       function getAnnualSales(orderArray) {
         const currentYear = new Date().getFullYear();
         return orderArray.filter(order => {
@@ -153,21 +152,22 @@
         });
       }
 
-      document.getElementById('monthlySalesBtn').addEventListener('click', function() {
+      document.getElementById('monthlySalesBtn').addEventListener('click', function () {
         const monthlySales = getMonthlySales(orderHistory);
-        console.log("Monthly Sales:", monthlySales); // Debugging line
-        displayOrderHistory(monthlySales); // Display monthly sales
+        console.log("Monthly Sales:", monthlySales);
+        displayOrderHistory(monthlySales);
       });
 
-      document.getElementById('annualSalesBtn').addEventListener('click', function() {
+      document.getElementById('annualSalesBtn').addEventListener('click', function () {
         const annualSales = getAnnualSales(orderHistory);
-        console.log("Annual Sales:", annualSales); // Debugging line
-        displayOrderHistory(annualSales); // Display annual sales
+        console.log("Annual Sales:", annualSales);
+        displayOrderHistory(annualSales);
       });
     });
   </script>
-    </body>
-    
-    </html>
 </body>
+
+</html>
+</body>
+
 </html>

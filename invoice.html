@@ -32,7 +32,7 @@
         <li><a href="./index.html" onclick="clearBurgerdata()">Home</a></li>
         <li><a href="./menu_page.html" onclick="clearBurgerdata()">Menu</a></li>
         <li><a href="./order_page.html" style="color: #1A1003;" onclick="clearBurgerdata()">Order</a></li>
-        <li><a href="#" style="margin-right: 172px;" onclick="clearBurgerdata()">Contact</a></li>
+        <li><a href="./contact_page.html" style="margin-right: 172px;" onclick="clearBurgerdata()">Contact</a></li>
       </ul>
 
       <div class="col-md-1 mb-2 mb-md-0">
@@ -110,7 +110,8 @@
   </div>
 
   <div class="container d-flex justify-content-center">
-    <a href="./menu_page.html" onclick="clearBurgerdata()" class="btn btn-success" style="margin-right: 10px;"><i class="bi bi-menu-button-wide"></i>
+    <a href="./menu_page.html" onclick="clearBurgerdata()" class="btn btn-success" style="margin-right: 10px;"><i
+        class="bi bi-menu-button-wide"></i>
       Menu</a>
     <button onclick="generatePDF()" class="btn btn-success" style="margin-right: 10px;"><i class="bi bi-download"></i>
       Download Invoice</button>
@@ -128,7 +129,7 @@
           <li><a href="./index.html">Home</a></li>
           <li><a href="./menu_page.html">Menu</a></li>
           <li><a href="./order_page.html" style="color: #1A1003;">Order</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="./contact_page.html">Contact</a></li>
         </ul>
 
         <ul class="Social_media nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -163,10 +164,7 @@
       return formattedDateTime;
     }
 
-    // Update the date and time immediately when the page loads
     const currentDateTime = updateDateTime();
-
-    // Update the date and time every second
     setInterval(updateDateTime, 1000);
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -193,13 +191,12 @@
       localStorage.setItem('counter', value);
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       let counter = getCounter();
       counter++;
       document.getElementById('counterDisplay').innerText = `OR${counter}`;
       setCounter(counter);
 
-      // Save order details to localStorage
       const orderDetails = {
         orderId: `OR${counter}`,
         clientName: document.getElementById('client-name').textContent,
@@ -212,7 +209,7 @@
       orderHistory.push(orderDetails);
       localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
 
-      
+
     });
   </script>
 </body>

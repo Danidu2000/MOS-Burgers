@@ -67,14 +67,14 @@
             );
 
             if (isDuplicate) {
-                alert('Customer with this name and phone number already exists');
+                //alert('Customer with this name and phone number already exists');
                 setTimeout(function () {
                     window.location.href = event.target.href;
                 }, 3000);
             } else {
                 customerList.push(newCustomer);
                 localStorage.setItem('customerList', JSON.stringify(customerList));
-                alert('Customer added successfully');
+                alert('Pyment successfully');
 
                 // Delay the navigation by 3 seconds (3000 milliseconds)
                 setTimeout(function () {

@@ -45,7 +45,7 @@
 </header>
 
 <body style="background-color: #FFCF8D;">
-  <div id="invoicePage" style="background-color: white;" class="mt-5">
+  <section id="invoicePage" style="background-color: white;" class="mt-5">
     <div class="container d-flex justify-content-center">
       <img src="./image/Logo dark.png" alt="" style="width: 100px;">
     </div>
@@ -108,7 +108,7 @@
     </div>
 
     <h6 class="text-center">The invoice is created on a computer and is valid without the signature and stamp.</h6>
-  </div>
+  </section>
 
   <div class="container d-flex justify-content-center">
     <a href="./menu_page.html" onclick="clearBurgerdata()" class="btn btn-success" style="margin-right: 10px;"><i
@@ -149,8 +149,11 @@
   </header>
   <script src="./items.js"></script>
   <script>
+    let nonFormattedDate;
+
     function updateDateTime() {
       const now = new Date();
+      nonFormattedDate = now;
       const options = {
         weekday: 'long',
         year: 'numeric',
@@ -203,6 +206,7 @@
         clientName: document.getElementById('client-name').textContent,
         clientPhone: document.getElementById('client-phone').textContent,
         dateTime: currentDateTime,
+        realDate: nonFormattedDate,
         total: document.getElementById('total-invoice').textContent
       };
 

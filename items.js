@@ -82,7 +82,7 @@ function B1008() {
         imgSrc: './image/Burger 2/Bacon Burger.png',
         unitPrice: 650.00,
         discount: '15%',
-        netPrice: 552.50
+        netPrice: 552.00
     });
 }
 
@@ -467,7 +467,7 @@ function B1044() {
         imgSrc: './image/Beverages/Pepsi (330ml).png',
         unitPrice: 990.00,
         discount: '5%',
-        netPrice: 940.50
+        netPrice: 940.00
     });
 }
 
@@ -500,7 +500,7 @@ function B1047() {
         imgSrc: './image/Beverages/Mirinda (330ml).png',
         unitPrice: 850.00,
         discount: '7%',
-        netPrice: 790.50
+        netPrice: 790.00
     });
 }
 
@@ -642,11 +642,48 @@ function displayTotal() {
 
 
 function generatePDF() {
-    const pdf = document.getElementById('invoicePage');
-    setTimeout(() => {
-        html2pdf().from(pdf).save();
-    }, 4000);
+    const invoiceElement = document.getElementById('invoicePage');
 
+    // Ensure all images are loaded before generating the PDF
+    const images = invoiceElement.getElementsByTagName('img');
+    const imageLoadPromises = [];
+
+    // Add a promise for each image to ensure it is fully loaded
+    for (let i = 0; i < images.length; i++) {
+        const img = images[i];
+        if (!img.complete) {
+            imageLoadPromises.push(new Promise((resolve) => {
+                img.onload = resolve;
+                img.onerror = resolve; // Resolve even if there's an error
+            }));
+        }
+    }
+
+    // Wait for all images to load before generating the PDF
+    Promise.all(imageLoadPromises).then(() => {
+        // After images are loaded, generate the PDF
+        html2pdf()
+            .from(invoiceElement)
+            .set({
+                margin: [0, 0, 0, 0],
+                filename: 'MOS_Burgers_Invoice.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: {
+                    scale: 2,  // You can adjust the scale for better resolution
+                    useCORS: true,  // Use this to handle cross-origin images
+                    scrollX: 0,
+                    scrollY: 0,
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            })
+            .save();
+    }).catch(error => {
+        console.error('Error generating PDF:', error);
+    });
 }
 
 function saveTotal() {
@@ -655,14 +692,67 @@ function saveTotal() {
     window.location.href = 'invoice.html';
 }
 
-function saveValues() {
-    const fname = document.getElementById('first_name').value;
-    const lname = document.getElementById('last_name').value;
-    const phnumber = document.getElementById('phone_number').value;
-    localStorage.setItem('fname', fname);
-    localStorage.setItem('lname', lname);
-    localStorage.setItem('phnumber', phnumber);
-    window.location.href = 'invoice.html';
-    console.log(fname, lname, phnumber);
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const payButton = document.getElementById('Paybutton');
+
+    if (payButton) {  // Ensure the element exists before adding an event listener
+        payButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            const firstName = document.getElementById('first_name').value.trim();
+            const lastName = document.getElementById('last_name').value.trim();
+            const phoneNumber = document.getElementById('phone_number').value.trim();
+            const paymentMethod = document.querySelector('input[name="payment"]:checked');
+
+            const fname = document.getElementById('first_name').value;
+            const lname = document.getElementById('last_name').value;
+            const phnumber = document.getElementById('phone_number').value;
+            localStorage.setItem('fname', fname);
+            localStorage.setItem('lname', lname);
+            localStorage.setItem('phnumber', phnumber);
+            console.log(fname, lname, phnumber);
+
+            // Validation
+            if (!firstName || !lastName || !phoneNumber || !paymentMethod) {
+                alert('Please fill out all fields and select a payment method.');
+                return;
+            }
+
+            const clientName = firstName + ' ' + lastName;
+            const clientPhone = phoneNumber;
+
+            const newCustomer = {
+                customerId: 'C' + Math.floor(Math.random() * 1000000),
+                customerName: clientName,
+                customerPhone: clientPhone
+            };
+
+            let customerList = JSON.parse(localStorage.getItem('customerList')) || [];
+
+            // Check for duplicate
+            const isDuplicate = customerList.some(customer =>
+                customer.customerName && customer.customerPhone && // Ensure properties exist
+                customer.customerName.toLowerCase() === clientName.toLowerCase() &&
+                customer.customerPhone === clientPhone
+            );
+
+            if (isDuplicate) {
+                alert('Customer already exists. Payment successful! Redirecting to invoice...');
+                alert('Payment successful! Redirecting to invoice...');
+                window.location.href = './invoice.html';
+            } else {
+                customerList.push(newCustomer);
+                localStorage.setItem('customerList', JSON.stringify(customerList));
+                alert('Payment successful! Redirecting to invoice...');
+                window.location.href = './invoice.html';
+            }
+
+        });
+    }
+});
+
+
+
+
+
+
 

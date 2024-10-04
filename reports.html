@@ -139,8 +139,11 @@
         const now = new Date();
         const currentMonth = now.getMonth();
         const currentYear = now.getFullYear();
+        console.log("Current Month:", currentMonth, "Current Year:", currentYear);
+
         return orderArray.filter(order => {
-          const orderDate = new Date(order.dateTime);
+          const orderDate = new Date(order.realDate);
+          console.log("Order Date:", orderDate, "Month:", orderDate.getMonth(), "Year:", orderDate.getFullYear());
           return orderDate.getMonth() === currentMonth && orderDate.getFullYear() === currentYear;
         });
       }
@@ -148,7 +151,7 @@
       function getAnnualSales(orderArray) {
         const currentYear = new Date().getFullYear();
         return orderArray.filter(order => {
-          const orderDate = new Date(order.dateTime);
+          const orderDate = new Date(order.realDate);
           return orderDate.getFullYear() === currentYear;
         });
       }

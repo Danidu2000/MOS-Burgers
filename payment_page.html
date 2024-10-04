@@ -14,7 +14,7 @@
 </head>
 
 <body style="background-color: #FFCF8D;">
-  <form class="w-50 m-auto mt-5">
+  <form class="w-50 m-auto mt-5" id="paymentForm">
     <div class="mb-3">
       <label class="form-label" style="color: #004A19;">First name</label>
       <input type="text" class="form-control bg-success-subtle" id="first_name" placeholder="First name">
@@ -38,57 +38,9 @@
           class="form-check-input bg-success-subtle" name="payment" id="card"></div>
     </div>
 
-    <a href="./invoice.html" id="Paybutton" onclick="saveValues()" class="btn btn-success p-3"
-      style="color: #FFCF8D;"><i class="bi bi-stripe"></i> Pay</a>
+    <button type="submit" id="Paybutton" class="btn btn-success p-3"
+      style="color: #FFCF8D;"><i class="bi bi-stripe"></i> Pay</button>
   </form>
-  <script>
-    document.getElementById('Paybutton').addEventListener('click', function (event) {
-      event.preventDefault(); // Prevent the default action of the link
-
-      const firstName = document.getElementById('first_name').value;
-      const lastName = document.getElementById('last_name').value;
-      const phoneNumber = document.getElementById('phone_number').value;
-
-      if (!firstName || !lastName || !phoneNumber) {
-        alert('Please fill out all fields');
-        return;
-      }
-
-      const clientName = firstName + ' ' + lastName;
-      const clientPhone = phoneNumber;
-
-      const newCustomer = {
-        customerId: 'C' + Math.floor(Math.random() * 1000000),
-        customerName: clientName,
-        customerPhone: clientPhone
-      };
-
-      let customerList = JSON.parse(localStorage.getItem('customerList')) || [];
-
-      // Check for duplicate
-      const isDuplicate = customerList.some(customer =>
-        customer.customerName && customer.customerPhone &&
-        customer.customerName.toLowerCase() === clientName.toLowerCase() &&
-        customer.customerPhone === clientPhone
-      );
-
-      if (isDuplicate) {
-        //alert('Customer with this name and phone number already exists');
-        setTimeout(function () {
-          window.location.href = event.target.href;
-        }, 3000);
-      } else {
-        customerList.push(newCustomer);
-        localStorage.setItem('customerList', JSON.stringify(customerList));
-        alert('Pyment successfully');
-
-        // Delay the navigation by 3 seconds (3000 milliseconds)
-        setTimeout(function () {
-          window.location.href = event.target.href;
-        }, 3000);
-      }
-    });
-  </script>
   <script src="./items.js"></script>
 </body>
 
